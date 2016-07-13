@@ -5,7 +5,7 @@ public class Main
 		Target.NestedBuilder nb = Target.NestedBuilder.factory("Test");
 		nb.setFieldB("Test2");
 		nb.setFieldD(20);
-		nb.setFieldE(2);
+		nb.setFieldE(24);
 		nb.build();
 		System.out.println(nb);
 	}

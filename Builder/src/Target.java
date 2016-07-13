@@ -16,7 +16,7 @@ public class Target
 		this.fieldE = nb.fieldE;
 	}
 
-	private boolean validate(NestedBuilder nb) throws ValidateException
+	private boolean validate(NestedBuilder nb)
 	{
 		try
 		{
@@ -36,7 +36,8 @@ public class Target
 		}
 		catch(Exception e)
 		{
-			throw new ValidateException();
+			System.out.println(e);
+			return false;
 		}
 	}
 
@@ -113,14 +114,10 @@ public class Target
 		{
 			target = new Target(this);
 			boolean result = false;
-			try
-			{
+
 			 result = target.validate(this);
-			}
-			catch(ValidateException e)
-			{
-				System.out.println(e);
-			}
+			
+
 			if(result)
 				return target;
 				return null;
@@ -137,8 +134,6 @@ public class Target
 			return new NestedBuilder(fieldA);
 		}
 	}
-
-
 }
 
 class ValidateException extends Exception
