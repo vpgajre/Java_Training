@@ -8,10 +8,11 @@ public class Main
 	public static void main(String[] args) 
 	{
 		List<String> ls = Arrays.asList("Fred", "Jim", "William", "Susannah", "Lucy", "Orinoco", "Toby");
-				List<String> longStrings = getLongStrings(ls, 6);
-				assert longStrings.size() == 3;
+		StringCriterion sc = new Vowels();
+				List<String> longStrings = stringFilter(ls,sc);
+				assert longStrings.size() == 7;
 				assert longStrings.get(0).equals("William");
-				assert longStrings.get(1).equals("Susannah");
+				assert longStrings.get(0).equals("Susannah");
 				assert longStrings.get(2).equals("Orinoco");
 		
 	}
@@ -28,4 +29,45 @@ public class Main
 		return result;
 	}
 
+	public static List<String> stringFilter(List<String> list, StringCriterion sc)
+	{
+		List<String> result = new ArrayList<String>();
+		if(sc.getClass().getName().equals("Longer"))
+		{
+			for(String line : list)
+			{
+				Longer longer = (Longer)sc;
+				boolean flag = longer.test(line);
+				if(flag)
+					result.add(line);
+			}
+		}
+		
+		else if(sc.getClass().getName().equals("FirstLetter"))
+		{
+			for(String line : list)
+			{
+				FirstLetter longer = (FirstLetter)sc;
+				boolean flag = longer.test(line);
+				if(flag)
+					result.add(line);
+			}
+		}
+		
+		else if(sc.getClass().getName().equals("Vowels"))
+		{
+			for(String line : list)
+			{
+				Vowels longer = (Vowels)sc;
+				boolean flag = longer.test(line);
+				if(flag)
+					result.add(line);
+			}
+		}
+		
+		else
+			return null;
+		
+		return result;
+	}
 }
